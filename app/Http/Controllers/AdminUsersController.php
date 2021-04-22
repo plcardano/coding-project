@@ -44,7 +44,16 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
         //
-        return $request->all();
+        // return $request->all();
+        User::create($request->all());
+
+        if('photo_id'){
+
+            $request('photo_id')->store('images');
+
+        }
+
+        return redirect()->route('users.index');
 
     }
 
