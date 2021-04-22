@@ -4,6 +4,8 @@
 
     <h1>Create User</h1>
 
+    @include('includes.form_error')
+
     <div class="row">
             <div class="col-sm-4">
                 <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
@@ -11,30 +13,38 @@
 
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name">                    
+                        <input type="text" name="name" 
+                                class="form-control @error('name') is-invalid @enderror" 
+                                id="name">
+
+                        @error('name')
+                            <div class="aler alert-danger">{{ $message }}</div>
+                        @enderror
+
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" id="password">                    
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password_confirmation">Confirm Password</label>
-                        <input type="password_confirmation" name="password_confirmation" class="form-control" id="password_confirmation">                    
+                        <input type="password" name="password" 
+                                class="form-control" 
+                                id="password">                    
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email">                    
+                        <input type="email" name="email" 
+                                class="form-control" 
+                                id="email">                    
                     </div>
                     
                     <div class="form-group">
                         <label for="role">Role</label>
                         <select name="role_id" id="role_id" class="form-control">
-                            <option value="1">Administrator</option>
-                            <option value="2">Author</option>
-                            <option value="3">Subscriber</option>
+
+                            @foreach ($roles as $role)
+                            <option value="" hidden selected disabled>Choose option</option>
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                            @endforeach
                         </select>                    
                     </div>
 
@@ -53,6 +63,7 @@
                     </div>
     
                 </form>
+
             </div>
         </div>
     
