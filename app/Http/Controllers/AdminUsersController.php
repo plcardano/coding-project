@@ -47,17 +47,17 @@ class AdminUsersController extends Controller
     {
         //
 
-        if(trim($request->passwprd) == ''){
+        // if(trim($request->passwprd) == ''){
 
-            $input = $request->except('password');
+        //     $input = $request->except('password');
 
-        } else{
+        // } else{
 
             $input = $request->all();
 
-            $input['password'] = bcrypt($request->password);
+        //     $input['password'] = bcrypt($request->password);
 
-        }
+        // }
 
         if($file = $request->file('photo_id')){
 
@@ -120,17 +120,17 @@ class AdminUsersController extends Controller
         //
         $user = User::findOrFail($id);
 
-        if(trim($request->passwprd) == ''){
+        // if(trim($request->passwprd) == ''){
 
-            $input = $request->except('password');
+        //     $input = $request->except('password');
 
-        } else{
+        // } else{
 
             $input = $request->all();
 
-            $input['password'] = bcrypt($request->password);
+            // $input['password'] = bcrypt($request->password);
 
-        }
+        // }
 
         if($file = $request->file('photo_id')){
 
@@ -159,5 +159,18 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+
+        
+        unlink(public_path() . $user->photo->file);
+        
+
+        $user->delete();
+
+        session()->flash('deleted-user', 'User has been deleted');
+
+        return redirect()->route('users.index');
+
     }
+
 }

@@ -68,11 +68,23 @@
     
                     <div class="form-group">
     
-                        <button type="submit" class="btn btn-primary">Create User</button>
+                        <button type="submit" class="btn btn-primary col-sm-5">Update</button>
     
                     </div>
-    
+                    
                 </form>
+
+                <div class="form-group">
+
+                    <form action="{{route('users.destroy', $user->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger col-sm-5">Delete</button>
+                
+                
+                    </form>
+
+                </div>
 
             </div>
         </div>

@@ -5,6 +5,10 @@
 
     <h1>Users</h1>
 
+    @if (session('deleted-user'))
+        <div class="alert alert-danger">{{ session('deleted-user') }}</div>
+    @endif
+
     <div class="col-sm-10">
     <table class="table">
         <thead>
