@@ -1,1 +1,12 @@
-<h1>Custom 404 Page</h1>
+
+
+    
+
+    <h1 class="text-center">Sorry! No page available.</h1>
+
+
+
+
+
+
+

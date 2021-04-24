@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                   <a href="{{url('/admin')}}">Laravel</a>
                 </div>
 
                 <div class="links">
