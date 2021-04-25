@@ -15,12 +15,15 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned()->index();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // when user is deleted, the post of that user is also deleted
             $table->integer('category_id')->unsigned()->index();
             $table->integer('photo_id')->unsigned()->index();
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+
+
+            
         });
     }
 
