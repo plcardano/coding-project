@@ -20,10 +20,20 @@
                 </div>
 
                 <div class="form-group">
+                        
                     <label for="category_id">Category</label>
+                   
                     <select name="category_id" id="category_id" class="form-control">
-                        <option value="0">Options</option>                                                        
-                    </select>                    
+                        @foreach ($categories as $category)
+                        
+                        <option value="" hidden selected disabled>Options</option>
+                        <option value="{{ $category->id}}">{{ $category->name }}</option>                                                        
+                        
+                        @endforeach
+                    
+                    </select>       
+                    
+                    
                 </div>
 
                 <div class="form-group">

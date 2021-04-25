@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use App\User;
 use App\Photo;
@@ -34,7 +35,9 @@ class AdminPostController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+        $categories = Category::all('name', 'id');
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
