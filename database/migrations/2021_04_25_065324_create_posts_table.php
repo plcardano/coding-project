@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // when user is deleted, the post of that user is also deleted
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index();
             $table->integer('photo_id')->unsigned()->index();
             $table->string('title');
@@ -23,7 +23,8 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
 
-            
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade'); // when user is deleted, the post of that user is also deleted
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
