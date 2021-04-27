@@ -13,10 +13,11 @@
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Author</th>
                 <th>Email</th>
                 <th>Comment</th>
                 <th>Post</th>
+                <th>Replies</th>
 
 
               </tr>
@@ -31,7 +32,7 @@
                 <td>{{ $comment->email }}</td>
                 <td>{{ $comment->body }}</td>
                 <td><a href="{{ route('home.post', $comment->post->id)}}">View Post</a></td>
-
+                <td><a href="{{route('replies.show', $comment->id)}}">View Replies</a></td>
                 {{-- <td>
                     @if ($comment->is_active == 1)
                         

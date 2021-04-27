@@ -53,5 +53,13 @@ Route::group(['middleware'=>'admin'], function(){
 
 });
 
+Route::group(['middleware'=>'admin'], function(){
+
+
+    Route::post('comment/reply', 'CommentRepliesController@createReply')->name('createReply');
+
+
+});
+
 
 
