@@ -25,15 +25,15 @@
             <tbody>
 
                 @foreach ($comments as $comment)
-                      
+
                 <td>{{ $comment->id }}</td>
                 <td>{{ $comment->author }}</td>
                 <td>{{ $comment->email }}</td>
                 <td>{{ $comment->body }}</td>
                 <td><a href="{{ route('home.post', $comment->post->id)}}">View Post</a></td>
 
-                {{-- <td>
-                    @if ($comment->is_active == 1)
+                <td>
+                    {{-- @if ($comment->is_active == 1)
                         
                         <div class="row">
                                 <div class="col-sm-3">
@@ -67,26 +67,9 @@
                                     @endif
                                 </div>
                             </div>
-                </td>
-                  
+                         --}}
 
-                    <td>
-                        <form action="{{route('comments.destroy', $comment->id)}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            @method('DELETE')
-                            
-                            
-    
-                            <div class="form-group">
-            
-                                <button type="submit" class="btn btn-danger">Delete</button>
-            
-                            </div>
-    
-                    </td> --}}
-                    <td>
-
-                    @if($comment->is_active == 1)
+                     @if($comment->is_active == 1)
 
 
                     {!! Form::open(['method'=>'PATCH', 'action'=> ['PostCommentsController@update', $comment->id]]) !!}
@@ -126,7 +109,18 @@
                 </td>
 
                 <td>
-                {!! Form::open(['method'=>'DELETE', 'action'=> ['PostCommentsController@destroy', $comment->id]]) !!}
+                    {{-- <form action="{{route('comments.destroy', $comment->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        
+
+                        <div class="form-group">
+        
+                            <button type="submit" class="btn btn-danger">Delete</button>
+        
+                        </div> --}}
+
+                    {!! Form::open(['method'=>'DELETE', 'action'=> ['PostCommentsController@destroy', $comment->id]]) !!}
 
 
                     <div class="form-group">
@@ -140,7 +134,10 @@
 
             </tbody>
             @endforeach
+          
     </table>
+    
+
     @else
 
         <h1 class="text-center">No Comment Available</h1>
