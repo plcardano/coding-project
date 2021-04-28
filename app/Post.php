@@ -3,10 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Cviebrock\EloquentSluggable\ServiceProvider;
+use Cviebrock\EloquentSluggable\SluggableObserver;
 
-class Post extends Model
+
+class Post extends Model 
 {
     //
+
+    use Sluggable;
+    use SluggableScopeHelpers;
+   
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+   
 
     protected $fillable = [
 
@@ -14,11 +31,22 @@ class Post extends Model
         'category_id',
         'photo_id',
         'title',
-        'body'
+        'body',
+        'slug',
 
 
 
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => true,
+            ]
+        ];
+    }        
 
     public function user(){
 

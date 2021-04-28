@@ -374,6 +374,8 @@
 
 @yield('scripts')
 
+@yield('scripts1')
+
 
 
 
